@@ -1,12 +1,14 @@
 import { useForm } from "react-hook-form"
 import { useState } from "react"
 import { useLatestTranslation } from "../../context/LatestTranslationContext"
+import { LETTERS_REGEX } from "../../const/regex"
 
 const TranslationInputForm = ({translateHandler}) => {
 
     const translationInputConfig = {
         required: true,
         maxLength: 40,
+        pattern: LETTERS_REGEX
     }
 
     //form handler for translation input
