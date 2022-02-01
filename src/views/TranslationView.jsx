@@ -1,4 +1,3 @@
-import OrderCoffeeButton from "../components/Translation/OrdersCoffeeButton"
 import withAuth from "../hoc/withAuth"
 import TranslationInputForm from "../components/Translation/TranslationInputForm"
 import { useState } from "react"
@@ -6,9 +5,7 @@ import { useUser } from "../context/UserContext"
 import { orderAdd } from "../api/order"
 import { storageSave } from "../utils/storage"
 import { STORAGE_KEY_USER } from "../const/storageKeys"
-import OrdersSummary from "../components/Translation/OrdersSummary"
 import TranslationOutput from "../components/Translation/TranslationOutput"
-import { FOCUSABLE_SELECTOR } from "@testing-library/user-event/dist/utils"
 
 const TranslationView = () => {
 

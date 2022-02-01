@@ -11,9 +11,7 @@ export const orderAdd = async (user, newTranslation) => {
             const response = await fetch(`${apiUrl}/${user.id}`, {
                 method: 'PATCH',
                 headers: createHeaders(),
-                body: JSON.stringify({
-                    // //NN left orders here to avoid messing up the login page for now. remove them later
-                    // orders: [...user.orders],
+                body: JSON.stringify({     
                     translations: [...user.translations, {
                         text: newTranslation,
                         isDeleted: false}],
