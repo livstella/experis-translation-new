@@ -2,7 +2,7 @@ import withAuth from "../hoc/withAuth"
 import TranslationInputForm from "../components/Translation/TranslationInputForm"
 import { useState } from "react"
 import { useUser } from "../context/UserContext"
-import { orderAdd } from "../api/order"
+import { orderAdd, translationsClearHistory, translationsFakeDelete } from "../api/order"
 import { storageSave } from "../utils/storage"
 import { STORAGE_KEY_USER } from "../const/storageKeys"
 import TranslationOutput from "../components/Translation/TranslationOutput"
@@ -29,7 +29,7 @@ const TranslationView = () => {
 
     return (
         <>
-            <h1>Orders</h1>
+            <h1>Translation</h1>
             <section id='translate-input'>
                 <TranslationInputForm translateHandler={handleTranslateClicked} />
                 {apiError && <p>{apiError}</p>}

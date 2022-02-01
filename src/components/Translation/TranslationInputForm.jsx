@@ -40,6 +40,9 @@ const TranslationInputForm = ({translateHandler}) => {
         if (errors.translationInput.type === 'maxLength'){
             return <span>Can only translate 40 characters at a time.</span>
         }
+        if (errors.translationInput.type === 'pattern'){
+            return <span>Can only translate English letters.</span>
+        }
     })()
 
     return (
