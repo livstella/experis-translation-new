@@ -1,13 +1,14 @@
 import { useForm } from "react-hook-form"
 import { useState } from "react"
-import { userById } from "../../api/user"
-import { useUser } from "../../context/UserContext"
+import { useLatestTranslation } from "../../context/LatestTranslationContext"
+import { LETTERS_REGEX } from "../../const/regex"
 
 const TranslationInputForm = ({translateHandler}) => {
 
     const translationInputConfig = {
         required: true,
         maxLength: 40,
+        pattern: LETTERS_REGEX
     }
 
     //form handler for translation input
@@ -16,14 +17,15 @@ const TranslationInputForm = ({translateHandler}) => {
     //handles showing the user that a translation is on the way
     const [translating, setTranslating] = useState(false)
 
-    //user state access from UserContext
-    const {user, setUser} = useUser()
+    //context for getting and setting just the latest translation
+    const {latestTranslation, setLatestTranslation} = useLatestTranslation()
 
     //passes translation input upwards to parent for use in the translateHandler prop function
     const onSubmit = async ({translationInput}) => {
         setTranslating(true)   
         await translateHandler(translationInput)
         setTranslating(false)
+        setLatestTranslation(translationInput) //flyt til translation view?
     }
 
     //render any user input errors to the screen. is called automatically on every re-render and then re-checks if any error messages exist.
@@ -37,6 +39,9 @@ const TranslationInputForm = ({translateHandler}) => {
         }
         if (errors.translationInput.type === 'maxLength'){
             return <span>Can only translate 40 characters at a time.</span>
+        }
+        if (errors.translationInput.type === 'pattern'){
+            return <span>Can only translate English letters.</span>
         }
     })()
 
